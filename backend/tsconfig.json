@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    // Input/Output
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    // Module system for Node 18+
+    "module": "NodeNext",
+    "target": "ESNext",
+    "moduleResolution": "NodeNext",
+    "types": ["node"],
+
+    // Emit
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+
+    // Type safety
+    "strict": true,
+    "skipLibCheck": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+
+    // Module behavior
+    "isolatedModules": true,
+    "moduleDetection": "force"
+
+    // 👇 REMOVE THIS
+    // "verbatimModuleSyntax": true
+
+    // Optional: Enable these for cleaner code
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true,
+    // "noImplicitReturns": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}
