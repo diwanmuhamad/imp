@@ -39,7 +39,12 @@ export const useAuthStore = create<AuthState>()(
         })),
       setLoading: (loading) => set({ loading }),
       setError: (error) => set({ error }),
-      logout: () => set({ user: null, token: null, isAuthenticated: false }),
+      logout: () => {
+        // ✅ Clear store state
+        set({ user: null, token: null, isAuthenticated: false });
+        // ✅ Remove persisted data from localStorage
+        localStorage.removeItem("auth-storage");
+      },
     }),
     {
       name: "auth-storage", // key in localStorage

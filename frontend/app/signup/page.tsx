@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerUser } from "@/services/auth";
@@ -28,6 +28,7 @@ export default function RegisterPage() {
     resolver: zodResolver(registerSchema),
   });
 
+  const [hydrated, setHydrated] = useState(false);
   const { showToast } = useToastStore();
 
   const onSubmit = async (data: RegisterForm) => {
@@ -46,14 +47,17 @@ export default function RegisterPage() {
   };
 
   useEffect(() => {
-    if (isAuthenticated) {
+    // Mark store as hydrated after initial load
+    setHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    if (hydrated && isAuthenticated) {
       window.location.href = "/";
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, hydrated]);
 
-  if (isAuthenticated) {
-    return <p className="text-center mt-20">You are already logged in.</p>;
-  }
+  if (!hydrated || isAuthenticated) return null;
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-base-200">

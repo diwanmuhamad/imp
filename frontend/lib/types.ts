@@ -14,4 +14,14 @@ interface LoginInput {
   email: string;
   password: string;
 }
-export type { User, RegisterInput, LoginInput };
+
+interface Post {
+  id: string;
+  title: string;
+  content: string;
+  authorId: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export type { User, RegisterInput, LoginInput, Post };
